@@ -21,7 +21,8 @@ namespace GraceAI {
 		}
 
 		float& operator() (int row, int col) {
-			return data[row + col * rows];
+			//check!
+			return data[row * columns + col];
 		}
 
 		//Matrix dot product
