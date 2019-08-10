@@ -1,5 +1,7 @@
 #pragma once
 
+#include <malloc.h>
+
 namespace GraceAI {
 
 	class Matrix {
