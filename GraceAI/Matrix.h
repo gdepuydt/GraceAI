@@ -78,5 +78,23 @@ namespace GraceAI {
 				data[i] -= a.data[i];
 			}
 		}
+
+		void Randomize() {
+			for (int i = 0; i < total; i++) {
+				data[i] = (float)rand() / (float)RAND_MAX;
+			}
+		}
+
+		void ADD_COLUMN_VECTOR(Matrix* colVec) {
+			if (this.rows != colVec->rows || colvec->columns != 1) {
+				throw("Column vector must have the same number of rows, and a single column.");
+			}
+
+			for (int c = 0; c < this->columns; c++) {
+				for (int r = 0; r < this->rows; r++) {
+					this->operator()(r, c) += colVec->operator()(r, 0);
+				}
+			}
+		}
 	};
 }

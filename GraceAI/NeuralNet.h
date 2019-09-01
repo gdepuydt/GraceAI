@@ -51,7 +51,11 @@ namespace GraceAI {
 		}
 
 		void ForwardProp() {
-
+			if (layers.size() < 1) {
+				throw "Net cannot feed forward, tehre are not enough layers.";
+			}
+			
+			layers[0]->FeedForward();
 		}
 
 		void BackProp() {

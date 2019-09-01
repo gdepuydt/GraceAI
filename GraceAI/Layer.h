@@ -48,9 +48,11 @@ namespace GraceAI {
 			deltaSums = new Matrix(this->neuronCount, batchSize);
 			
 			weights = new Matrix(this->neuronCount, previousLayer->neuronCount);
+			weights->Randomize();
 			deltaWeights = new Matrix(this->neuronCount, previousLayer->neuronCount);
 			
 			bias = new Matrix(this->neuronCount, 1);
+			bias->Randomize();
 			deltaBias = new Matrix(this->neuronCount, 1);
 
 			this->previousLayer = previousLayer;
@@ -58,7 +60,15 @@ namespace GraceAI {
 		}
 
 		void FeedForward() {
+			sums->MUL(*weights, *previousLayer->activations);
+			sums->ADD_COLUMN_VECTOR(bias);
 
+			if (nextLayer != nullptr) {
+				
+				//TODO: Perform the activation function
+				
+				nextLayer->FeedForward();
+			}
 		}
 
 		void Backprop() {
